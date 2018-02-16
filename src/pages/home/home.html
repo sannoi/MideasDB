@@ -1,17 +1,40 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="primary">
+
+    <ion-title><ion-icon start name="albums"></ion-icon> Items</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="newItem()">
+    <ion-icon name="add"></ion-icon>
+  </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content no-padding>
+  <ion-searchbar placeholder="Buscar" (ionInput)="filterItems($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of items | sortDescBy : 'date'">
+      <button ion-item (click)="viewItem(item)">
+        <ion-avatar *ngIf="item.image" item-start>
+          <img [src]="item.image">
+        </ion-avatar>
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.description }}</p>
+        <ion-note item-end>{{ parseTwitterDate(item.date) }}</ion-note>
+      </button>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeItem(item)">
+        <ion-icon name="trash"></ion-icon>
+        Borrar
+      </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item text-center *ngIf="!items || items.length <= 0">
+      <b>No hay items</b><br>
+      <p>Crea <a (click)="newItem()">tu primer item</a> ahora</p>
+    </ion-item>
+
+  </ion-list>
 </ion-content>

@@ -1,6 +1,6 @@
 {
   "name": "MideasDB",
-  "app_id": "",
+  "app_id": "es.mideas.db",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
