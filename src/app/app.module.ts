@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera';
 
 import { AboutPage } from '../pages/about/about';
 import { HomePage } from '../pages/home/home';
@@ -15,6 +16,7 @@ import { ItemsServiceProvider } from '../providers/items-service/items-service';
 import { ToastServiceProvider } from '../providers/toast-service/toast-service';
 
 import { PipesModule } from '../pipes/pipes.module';
+import { CameraServiceProvider } from '../providers/camera-service/camera-service';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { PipesModule } from '../pipes/pipes.module';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ItemsServiceProvider,
-    ToastServiceProvider
+    ToastServiceProvider,
+    Camera,
+    CameraServiceProvider
   ]
 })
 export class AppModule {}
