@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera';
+import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
 
 import { AboutPage } from '../pages/about/about';
 import { HomePage } from '../pages/home/home';
@@ -49,7 +50,8 @@ import { CameraServiceProvider } from '../providers/camera-service/camera-servic
     ItemsServiceProvider,
     ToastServiceProvider,
     Camera,
-    CameraServiceProvider
+    CameraServiceProvider,
+    PhonegapLocalNotification
   ]
 })
 export class AppModule {}
