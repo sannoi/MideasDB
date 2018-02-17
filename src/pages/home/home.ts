@@ -45,7 +45,7 @@ export class HomePage {
   }
 
   viewItem(item: ItemModel) {
-    console.log(item);
+    this.navCtrl.push('ItemInfoPage', {item: item});
   }
 
   newItem() {

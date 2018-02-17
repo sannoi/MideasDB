@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar color="primary" *ngIf="item">
+    <ion-title>{{item.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <div class="item-info" *ngIf="item">
+    <ion-thumbnail>
+    <img [src]="item.image" class="header-img">
+  </ion-thumbnail>
+  <hr>
+
+    <ion-card color="light">
+      <ion-card-content>
+        {{item.description}}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-note float-right>{{parseTwitterDate(item.date)}}</ion-note>
+  </div>
+</ion-content>

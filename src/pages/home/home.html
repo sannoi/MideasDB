@@ -16,9 +16,9 @@
   <ion-list>
     <ion-item-sliding *ngFor="let item of items | sortDescBy : 'date'">
       <button ion-item (click)="viewItem(item)">
-        <ion-avatar *ngIf="item.image" item-start>
+        <ion-thumbnail *ngIf="item.image" item-start>
           <img [src]="item.image">
-        </ion-avatar>
+        </ion-thumbnail>
         <h2>{{ item.title }}</h2>
         <p>{{ item.description }}</p>
         <ion-note item-end>{{ parseTwitterDate(item.date) }}</ion-note>
