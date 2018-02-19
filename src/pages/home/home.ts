@@ -4,8 +4,6 @@ import { ToastServiceProvider } from '../../providers/toast-service/toast-servic
 import { ItemsServiceProvider } from '../../providers/items-service/items-service';
 import { ItemModel } from '../../models/item-model';
 
-import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -18,19 +16,7 @@ export class HomePage {
     public navCtrl: NavController,
     public alertCtrl: AlertController,
     public toastService: ToastServiceProvider,
-    public itemsService: ItemsServiceProvider,
-    private localNotification: PhonegapLocalNotification) {
-      this.localNotification.requestPermission().then(
-        (permission) => {
-          if (permission === 'granted') {
-            // Create the notification
-            this.localNotification.create('My Title', {
-              tag: 'message1',
-              body: 'My body',
-              icon: 'assets/icon/favicon.ico'
-            });
-          }
-      });
+    public itemsService: ItemsServiceProvider) {
   }
 
   ionViewDidEnter() {
