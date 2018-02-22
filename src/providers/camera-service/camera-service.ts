@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @Injectable()
 export class CameraServiceProvider {
 
-  constructor(private camera: Camera) {
+  constructor(private camera: Camera, private barcodeScanner: BarcodeScanner) {
+  }
+
+  getBarcodeScan() {
+    return this.barcodeScanner.scan().then((barcodeData) => {
+      return barcodeData;
+    }, (err) => {
+      console.log('BARCODE SCAN ERROR -> ' + JSON.stringify(err));
+    });
   }
 
   getPictureFromCamera() {

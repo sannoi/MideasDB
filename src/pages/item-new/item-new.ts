@@ -16,6 +16,7 @@ export class ItemNewPage {
   title: string;
   description: string;
   image: string;
+  barcode: any;
 
   constructor(
     public navCtrl: NavController,
@@ -42,6 +43,22 @@ export class ItemNewPage {
         this.navCtrl.setRoot(HomePage);
       });
     }
+  }
+
+  getFromBarcodeScanner() {
+    const loading = this.loadingCtrl.create();
+
+    loading.present();
+    return this.cameraService.getBarcodeScan().then(barcode => {
+      alert(JSON.stringify(barcode));
+      console.log(barcode);
+      if (barcode) {
+        this.barcode = barcode;
+      }
+      loading.dismiss();
+    }, error => {
+      alert(error);
+    });
   }
 
   getFromCamera() {

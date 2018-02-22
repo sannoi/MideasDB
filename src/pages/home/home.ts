@@ -80,43 +80,40 @@ export class HomePage {
   initializeItems() {
     this.itemsService.getAll().then(items => {
       this.items = items;
-      if (!this.items) {
-        this.fillTestItems();
-      }
     });
   }
 
-  fillTestItems() {
-    let item1 = new ItemModel('Item 1', 'My custom item 1', 'assets/imgs/logo.png');
-    let item2 = new ItemModel('Item 2', 'My custom item 2', 'assets/imgs/logo.png');
-    let item3 = new ItemModel('Item 3', 'My custom item 3', 'assets/imgs/logo.png');
+  parseTwitterDate(time: string) {
+    var date = new Date((time || "").replace(/-/g, "/").replace(/[TZ]/g, " ")),
+      diff = (((new Date()).getTime() - date.getTime()) / 1000),
+      day_diff = Math.floor(diff / 86400);
 
-    this.itemsService.add(item1).then(() => {
-      this.itemsService.add(item2).then(() => {
-        this.itemsService.add(item3).then(result => {
-          this.items = result;
-        });
-      });
-    });
+    if (isNaN(day_diff) || day_diff < 0/* || day_diff >= 31*/)
+      return;
+
+    if (day_diff >= 31) {
+      var monthNames = [
+        "ene", "feb", "mar",
+        "abr", "may", "jun", "jul",
+        "ago", "sep", "oct",
+        "nov", "dic"
+      ];
+
+      var day = date.getDate();
+      var monthIndex = date.getMonth();
+      var year = date.getFullYear();
+
+      return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    }
+
+    return day_diff == 0 && (
+      diff < 60 && "ahora mismo" ||
+      diff < 120 && "hace 1 minuto" ||
+      diff < 3600 && "hace " + Math.floor(diff / 60) + " minutos" ||
+      diff < 7200 && "hace 1 hora" ||
+      diff < 86400 && "hace " + Math.floor(diff / 3600) + " horas") ||
+      day_diff == 1 && "ayer" ||
+      day_diff < 7 && "hace " + day_diff + " días" ||
+      day_diff < 31 && "hace " + Math.ceil(day_diff / 7) + " semanas";
   }
-
-  parseTwitterDate(time: string){
-		var date = new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")),
-			diff = (((new Date()).getTime() - date.getTime()) / 1000),
-			day_diff = Math.floor(diff / 86400);
-
-		if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
-			return;
-
-		return day_diff == 0 && (
-				diff < 60 && "ahora mismo" ||
-				diff < 120 && "hace 1 minuto" ||
-				diff < 3600 && "hace " + Math.floor( diff / 60 ) + " minutos" ||
-				diff < 7200 && "hace 1 hora" ||
-				diff < 86400 && "hace " + Math.floor( diff / 3600 ) + " horas") ||
-			day_diff == 1 && "ayer" ||
-			day_diff < 7 && "hace " + day_diff + " días" ||
-			day_diff < 31 && "hace " + Math.ceil( day_diff / 7 ) + " semanas";
-	}
-
 }
