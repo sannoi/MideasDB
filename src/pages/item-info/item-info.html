@@ -20,6 +20,15 @@
       </ion-card-content>
     </ion-card>
 
+    <ion-card color="light" *ngIf="item.params && item.params.barcode">
+      <ion-card-header>
+        Código de barras
+      </ion-card-header>
+      <ion-card-content>
+        {{item.params.barcode.format}}: {{item.params.barcode.text}}
+      </ion-card-content>
+    </ion-card>
+
     <ion-note float-right>{{parseTwitterDate(item.date)}}</ion-note>
   </div>
 </ion-content>

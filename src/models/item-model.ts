@@ -2,7 +2,7 @@ export class ItemModel {
   id: string;
   date: string;
 
-  constructor(public title: string, public description: string, public image: string) {
+  constructor(public title: string, public description: string, public image: string, public params?: any) {
     this.id = this.generateId();
     this.date = this.getDateTime();
   }

@@ -17,6 +17,7 @@ export class ItemNewPage {
   description: string;
   image: string;
   barcode: any;
+  barcodeText: any;
 
   constructor(
     public navCtrl: NavController,
@@ -37,7 +38,7 @@ export class ItemNewPage {
         content: "Please wait..."
       });
       loader.present();
-      let item = new ItemModel(this.title, this.description, this.image);
+      let item = new ItemModel(this.title, this.description, this.image, { barcode: this.barcode });
       this.itemsService.add(item).then(result => {
         loader.dismiss();
         this.navCtrl.setRoot(HomePage);
@@ -52,8 +53,9 @@ export class ItemNewPage {
     return this.cameraService.getBarcodeScan().then(barcode => {
       alert(JSON.stringify(barcode));
       console.log(barcode);
-      if (barcode) {
+      if (barcode && !barcode.cancelled) {
         this.barcode = barcode;
+        this.barcodeText = barcode.format + ": " + barcode.text;
       }
       loading.dismiss();
     }, error => {
