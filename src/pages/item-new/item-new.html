@@ -51,16 +51,18 @@
             <ion-textarea [(ngModel)]="description"></ion-textarea>
           </ion-item>
 
-          <ion-item>
-            <ion-label stacked>Código de barras</ion-label>
-            <ion-input type="text" [(ngModel)]="barcodeText"></ion-input>
-          </ion-item>
-
         </ion-list>
       </ion-col>
 
     </ion-row>
   </ion-grid>
+
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Código de barras</ion-label>
+      <ion-input readonly type="text" [(ngModel)]="barcodeText"></ion-input>
+    </ion-item>
+  </ion-list>
 
       <button ion-button color="primary" full (click)="saveItem()"><ion-icon name="save"></ion-icon> GUARDAR</button>
 
