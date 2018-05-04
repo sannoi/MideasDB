@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, AlertController } from 'ionic-angular';
 import { ToastServiceProvider } from '../../providers/toast-service/toast-service';
 import { ItemsServiceProvider } from '../../providers/items-service/items-service';
 import { ItemModel } from '../../models/item-model';
@@ -16,7 +16,8 @@ export class HomePage {
     public navCtrl: NavController,
     public alertCtrl: AlertController,
     public toastService: ToastServiceProvider,
-    public itemsService: ItemsServiceProvider) {
+    public itemsService: ItemsServiceProvider,
+    public modalCtrl: ModalController) {
   }
 
   ionViewDidEnter() {
@@ -48,7 +49,15 @@ export class HomePage {
   }
 
   newItem() {
-    this.navCtrl.push('ItemNewPage');
+    //this.navCtrl.push('ItemNewPage');
+    let addModal = this.modalCtrl.create('SelectCardPage');
+    // addModal.onDidDismiss(item => {
+    //   console.log('item'+item)
+    //   if (item) {
+    //     this.items.add(item);
+    //   }
+    // })
+    addModal.present();
   }
 
   removeItem(item: ItemModel) {

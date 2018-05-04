@@ -1,17 +1,15 @@
 <ion-header>
-
   <ion-navbar color="primary">
     <ion-title>Nuevo item</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <ion-thumbnail>
+        <ion-thumbnail [style.background-color]="color">
           <img [src]="image">
         </ion-thumbnail>
 
@@ -61,9 +59,9 @@
     <ion-item>
       <ion-label stacked>Código de barras</ion-label>
       <ion-input readonly type="text" [(ngModel)]="barcodeText"></ion-input>
+      <ion-input type="text" [(ngModel)]="encodeData" ></ion-input>
     </ion-item>
   </ion-list>
 
       <button ion-button color="primary" full (click)="saveItem()"><ion-icon name="save"></ion-icon> GUARDAR</button>
-
 </ion-content>

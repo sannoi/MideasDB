@@ -16,7 +16,7 @@
   <ion-list>
     <ion-item-sliding *ngFor="let item of items | sortDescBy : 'date'">
       <button ion-item (click)="viewItem(item)">
-        <ion-thumbnail *ngIf="item.image" item-start>
+        <ion-thumbnail *ngIf="item.image" item-start [style.background-color]="item.color">
           <img [src]="item.image">
         </ion-thumbnail>
         <h2>{{ item.title }}</h2>

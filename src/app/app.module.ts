@@ -18,6 +18,7 @@ import { ToastServiceProvider } from '../providers/toast-service/toast-service';
 
 import { PipesModule } from '../pipes/pipes.module';
 import { CameraServiceProvider } from '../providers/camera-service/camera-service';
+import { MarcasProvider } from '../providers/marcas/marcas';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { CameraServiceProvider } from '../providers/camera-service/camera-servic
     ToastServiceProvider,
     Camera,
     BarcodeScanner,
-    CameraServiceProvider
+    CameraServiceProvider,
+    MarcasProvider
   ]
 })
 export class AppModule {}

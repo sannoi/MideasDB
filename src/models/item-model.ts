@@ -2,13 +2,13 @@ export class ItemModel {
   id: string;
   date: string;
 
-  constructor(public title: string, public description: string, public image: string, public params?: any) {
+  constructor(public title: string, public description: string, public image: string, public color: string, public params?: any) {
     this.id = this.generateId();
     this.date = this.getDateTime();
   }
 
   generateId() {
-    return (Date.now().toString(36) + Math.random().toString(36).substr(2, 8)).toUpperCase();
+    return (Date.now().toString(36) + Math.random().toString( 36).substr(2, 8)).toUpperCase();
   }
 
   getDateTime() {
